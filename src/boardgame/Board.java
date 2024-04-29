@@ -39,5 +39,11 @@ public class Board {
 		return pieces[position.getRow()][position.getColumn()];
 	}
 	
+	// Método que colocará a peça em determinada posição
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
+	}
+	
 	
 }
