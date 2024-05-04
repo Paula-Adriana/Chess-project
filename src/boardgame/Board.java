@@ -49,6 +49,23 @@ public class Board {
 		piece.position = position;
 	}
 	
+	public Piece removePiece(Position position) {
+		if (!positionExists(position)) {
+			throw new BoardException("Position not on the board");
+		}
+		// Se a posição da peça for null quer dizer que não existe peça nessa posição a ser removida
+		if (piece(position) == null) {
+			return null;
+		}
+		// Removendo a peça
+		// aux recebe a posição da peça no tabuleiro recebendo null
+		Piece aux = piece(position);
+		aux.position = null;
+		// A matriz de peças nesta posição que estamos removendo a peça tb receberá null
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux;
+	}
+	
 	// As vezes será mais fácil a verificação se a posição existe pela linha e coluna
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
@@ -66,5 +83,4 @@ public class Board {
 		}
 		return piece(position) != null;
 	}
-	
 }
