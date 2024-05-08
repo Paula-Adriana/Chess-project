@@ -40,6 +40,7 @@ public class ChessMatch {
 		
 		// Validar se este a posição
 		validateSourcePosition(source);
+		validateTargetPosition(source, target);
 		
 		// Capturar a posição futura
 		Piece capturePiece = makeMove(source, target);
@@ -62,6 +63,14 @@ public class ChessMatch {
 		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible moves for the chosen piece");
 		}
+	}
+	
+	private void validateTargetPosition(Position source, Position target) {
+		// Se a origem da peça para o alvo não é um movimento possível
+		if (!board.piece(source).possibleMove(target)) {
+			throw new ChessException("The chosen piece can't move to target position");
+		}
+		
 	}
 
 	// Colocar uma peça usando as coordenadas do xadrez
